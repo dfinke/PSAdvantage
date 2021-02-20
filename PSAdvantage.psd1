@@ -22,6 +22,7 @@
 
     # Description of the functionality provided by this module
     Description        = @'
+GitHub Actions at your Fingertips! ✨ - via PowerShell
 '@
 
     # Functions to export from this module
