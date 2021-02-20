@@ -1,0 +1,17 @@
+# Template for basic PowerShell automation
+name: Custom PowerShell Automation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run the scripts
+        shell: pwsh
+        run: |
+$command

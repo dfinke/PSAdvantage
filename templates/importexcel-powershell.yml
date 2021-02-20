@@ -1,0 +1,24 @@
+# Template for basic PowerShell automation
+name: Custom PowerShell Automation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run the scripts
+        shell: pwsh
+        run: |
+          install-module importexcel -force
+$command
+      
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v4.2.0
+        with:
+          commit_message: Check in Excel results
+          commit_user_name: 'PowerShell Automation'          
