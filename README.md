@@ -58,4 +58,4 @@ This tool was intended to make lives easier. Whether you are someone who cannot 
 
 P.S.: It is entirely the end-users' responsibility to comply with [GitHub's Terms](https://docs.github.com/en/github/site-policy/github-additional-product-terms#5-actions-and-packages).
 
-> Crafted by [@dfinke](https://twitter.com/dfinke)
+> [@dfinke](https://twitter.com/dfinke)
