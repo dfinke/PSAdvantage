@@ -1,5 +1,5 @@
 # Template for basic PowerShell automation
-name: Custom PowerShell Automation
+name: Excel Setup
 
 on:
   workflow_dispatch:
@@ -24,4 +24,4 @@ $command
         uses: stefanzweifel/git-auto-commit-action@v4.2.0
         with:
           commit_message: Check in Excel results
-          commit_user_name: 'PowerShell Automation'          
+          commit_user_name: 'PowerShell Automation'
