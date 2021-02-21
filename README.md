@@ -11,8 +11,8 @@
   <a href="https://github.com/dfinke/PSAdvantage/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-BSD%203%20Clause-orange.svg?logo=openbsd&style=flat-square">
   </a>
-</p>
-
+</p> 
+ 
 <p align="center">
   <a href="https://github.com/dfinke/PSAdvantage/wiki">Documentation</a> •
   <a href="https://github.com/dfinke/PSAdvantage/wiki/Usage">Usage</a> •
