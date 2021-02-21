@@ -14,7 +14,8 @@ function New-GHRepo {
         $AccessToken,
         [switch]$clone
     )
-        
+ 
+    Write-ToConsole * INFO 'Trying to create repository ...'
     $payload = @{
         "name"        = $reponame
         "description" = $description
@@ -23,6 +24,8 @@ function New-GHRepo {
     
     $url = 'https://api.github.com/user/repos'    
     $result = Invoke-GitHubAPI -Uri $url -Method Post -Body $payload -AccessToken $AccessToken
+
+    Write-ToConsole + -Text "Successfully created: $($result.html_url)"
 
     if ($clone) {
         git clone $result.clone_url ./custom/$reponame

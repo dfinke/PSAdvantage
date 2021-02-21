@@ -39,8 +39,7 @@ function Invoke-Advantage {
         "message" = 'Added workflow file'
     } 
 
-    if (!(Test-GHRepo -owner $owner -reponame $reponame -AccessToken $AccessToken)) {
-        Write-ToConsole * INFO 'Trying to create repository ...'
+    if (!(Test-GHRepo -owner $owner -reponame $reponame -AccessToken $AccessToken)) {        
         New-GHRepo $reponame $reponame -AccessToken $AccessToken
     }
 
