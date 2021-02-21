@@ -11,10 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install ImportExcel PowerShell Module
+        shell: pwsh
+        run: Install-Module ImportExcel -Force
+
       - name: Run the scripts
         shell: pwsh
         run: |
-          install-module importexcel -force
 $command
       
       - name: Commit and push
