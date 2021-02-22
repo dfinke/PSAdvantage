@@ -24,7 +24,7 @@ function Remove-GHRepo {
     if (!$Confirm) {
         $message = "This will delete repo $($owner)/$($reponame) - type Y to confirm"
         $result = Read-Host $message
-        if($result -match "[nN]" -or [string]::IsNullOrEmpty($result)) {
+        if($result -ne "y") {
             return
         }
     }
