@@ -2,9 +2,7 @@ function Invoke-GHWorkflow {
     <#
         .Synopsis
         Trigger a GitHub Actions workflow run
-      
-        .Example
-        New-GHRepo -reponame pstest
+
         .Example
         Invoke-GHWorkflow dfinke PSGitHubCLICrescendo 4394193
 
