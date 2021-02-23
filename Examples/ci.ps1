@@ -1,3 +1,10 @@
+<#
+    NOT INTENDED TO BE RUN STAND ALONE !!!
+
+    This is used in the CloneAndGo.ps1
+    It is copied and then pushed to the repository, and is run via GitHub Action workflow
+#>
+
 ./hello.ps1 && ./howdy.ps1
 
 Install-Module importexcel -force
