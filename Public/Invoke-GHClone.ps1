@@ -35,3 +35,4 @@ function Invoke-GHClone {
     else {
         Write-ToConsole - Error -Text $r -TextColor Red
     }
+}
