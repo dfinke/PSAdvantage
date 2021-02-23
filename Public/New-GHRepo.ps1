@@ -28,6 +28,7 @@ function New-GHRepo {
     Write-ToConsole + -Text "Successfully created: $($result.html_url)"
 
     if ($clone) {
-        git clone $result.clone_url ./custom/$reponame
+        # git clone $result.clone_url ./custom/$reponame
+        Invoke-GHClone $result.clone_url ./custom/$reponame
     }
 }
