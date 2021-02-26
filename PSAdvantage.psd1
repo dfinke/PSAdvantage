@@ -40,6 +40,7 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'Get-GitHubAuthHeader',
         'Import-PSAdvantageConfig',
         'Invoke-Advantage',
+        'Invoke-GHClone',
         'Invoke-GHPush',
         'Invoke-GHWorkflow',
         'Invoke-GitHubAPI',
