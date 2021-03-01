@@ -6,7 +6,7 @@
     RootModule         = 'PSAdvantage.psm1'
 
     # Version number of this module.
-    ModuleVersion      = '0.4.1'
+    ModuleVersion      = '0.4.2'
 
     # ID used to uniquely identify this module
     GUID               = '49ae071e-64ab-43f3-8de7-20b0ea6fbab8'
@@ -31,7 +31,9 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'Expand-Template',
         'Get-GHFileSHA',
         'Get-GHJob',
+        'Get-GHJobSteps',
         'Get-GHLatestJob',
+        'Get-GHLatestJobSteps',
         'Get-GHLatestRun',
         'Get-GHLog',
         'Get-GHRepo',
