@@ -12,14 +12,17 @@ function Invoke-GHClone {
     param(
         [Parameter(Mandatory)]
         $Url,
+
         [Parameter(Mandatory)]
-        $Reponame
+        $Reponame,
+
+        [Parameter(Mandatory)]
+        $GitFolder
     )
-    
-    $defaultPath = './custom'
-    $path = "$defaultPath/$reponame"
-    
-    if (Test-Path $path) {     
+
+    $path = "$GitFolder/$reponame"
+
+    if (Test-Path $path) {
         Write-ToConsole * INFO 'Repository already exists under the custom folder. Recloning...'
         Remove-Item $path -Recurse -Force
     }
@@ -28,9 +31,9 @@ function Invoke-GHClone {
 
     Write-ToConsole * INFO -Text 'Trying to clone the repository...'
     $r = git clone $Url $path $flag $flag 2>&1
-    
-    if ($LASTEXITCODE -eq 0) {        
-        Write-ToConsole + -Text "Repository successfully cloned under $($defaultPath) directory!"
+
+    if ($LASTEXITCODE -eq 0) {
+        Write-ToConsole + -Text "Repository successfully cloned under '$($GitFolder)' directory!"
     }
     else {
         Write-ToConsole - Error -Text $r -TextColor Red
