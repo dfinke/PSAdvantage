@@ -23,7 +23,7 @@ function Get-GHRepo {
     $url = 'https://api.github.com/repos/{0}/{1}' -f $owner, $repo
     $result = Invoke-GitHubAPI $url -AccessToken $AccessToken
 
-    if($View -and $result) {
+    if ($View -and $result) {
         Start-Process $result.html_url
         return
     }
@@ -31,7 +31,8 @@ function Get-GHRepo {
     if (!$Raw) {
         if ($result) {
             [PSCustomObject][Ordered]@{
-                Name        = $result.Name
+                Owner       = $owner
+                Repo        = $result.Name
                 FullName    = $result.full_name            
                 Private     = $result.private
                 HtmlUrl     = $result.html_url
