@@ -6,7 +6,7 @@
     RootModule         = 'PSAdvantage.psm1'
 
     # Version number of this module.
-    ModuleVersion      = '0.4.3'
+    ModuleVersion      = '0.4.4'
 
     # ID used to uniquely identify this module
     GUID               = '49ae071e-64ab-43f3-8de7-20b0ea6fbab8'
