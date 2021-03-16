@@ -6,13 +6,15 @@ function Get-GHLatestJobSteps {
 
     #>
     param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         $owner,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         $repo,
         $AccessToken,
         [Switch]$wait
     )
-
-    Get-GHLatestJob -owner $owner -repo $repo -AccessToken $AccessToken -Wait:$wait -Raw | Out-GHJobSteps
+    
+    Process {
+        Get-GHLatestJob -owner $owner -repo $repo -AccessToken $AccessToken -Wait:$wait -Raw | Out-GHJobSteps
+    }
 }

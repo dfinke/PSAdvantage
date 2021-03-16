@@ -7,14 +7,16 @@ function Get-GHLatestRun {
         Get-GHLatestRun powershell powershell
     #>
     param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         $owner,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         $repo,
         $AccessToken,
         [Switch]$Raw
     )    
     
-    $run = Get-GHRun -owner $owner -repo $repo -AccessToken $AccessToken -Raw:$Raw
-    if ($run) { $run[0] }    
+    Process {
+        $run = Get-GHRun -owner $owner -repo $repo -AccessToken $AccessToken -Raw:$Raw
+        if ($run) { $run[0] }    
+    }
 }
