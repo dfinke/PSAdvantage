@@ -53,6 +53,7 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'Remove-GHRepo',
         'Remove-GHRepoWorkflowFile',
         'Remove-GHSecret',
+        'Set-GHContent',
         'Stop-GHRun',
         'Test-GHPath',
         'Test-GHRepo',
