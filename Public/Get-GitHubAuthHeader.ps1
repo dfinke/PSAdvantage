@@ -11,19 +11,21 @@ function Get-GitHubAuthHeader {
         $AccessToken
     )
 
-    if ($null -eq $config.AccessToken -and $null -eq $AccessToken) {
+    if ($AccessToken) {
+        $token = $AccessToken
+    }
+    elseif ($config.AccessToken) {
+        $token = $config.AccessToken        
+    }
+    elseif ($env:PSAdvantageGHToken) {
+        $token = $env:PSAdvantageGHToken
+    }
+    else {
         $msg = @{
-            message = 'You have to supply an access token via -AccessToken or the config.ps1 file for this tool to work!'
+            message = 'You have to supply an access token via -AccessToken, a config.ps1 file, or $env:PSAdvantageGHToken for this tool to work! https://github.com/dfinke/PSAdvantage/wiki/Setup'
         } | ConvertTo-Json
 
         throw $msg
-    }
-
-    if ($config.AccessToken) {
-        $token = $config.AccessToken
-    }
-    else {
-        $token = $AccessToken
     }
 
     return @{"Authorization" = "token $($token)" }
