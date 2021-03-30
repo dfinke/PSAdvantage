@@ -17,10 +17,10 @@ function Set-GHContent {
         $owner,
         [Parameter(Mandatory)]
         $reponame,
-        $gitHubPath,        
-        $AccessToken,     
         [Parameter(ValueFromPipelineByPropertyName)]
-        $FullName
+        $FullName,
+        $gitHubPath,
+        $AccessToken     
     )
 
     Process {
