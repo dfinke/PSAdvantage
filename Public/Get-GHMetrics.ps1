@@ -5,20 +5,19 @@ function Get-GHMetrics {
 
         .Example
         Get-GHMetrics powershell/powershell -AccessToken f6080a507cc3775f5e1ea3aec53518973f5ee8d6
-        
-Date                  Owner      Name       issues pullRequests releases stargazers watchers forkCount
-----                  -----      ----       ------ ------------ -------- ---------- -------- ---------
-3/27/2021 10:38:59 AM powershell PowerShell   8882         5900       93      25453     1294      4056
+
+Date                 Owner      Name       IsPrivate Issues PullRequests Releases Stargazers Watchers ForkCount
+----                 -----      ----       --------- ------ ------------ -------- ---------- -------- ---------
+3/30/2021 3:51:55 PM powershell PowerShell     False   8894         5903       93      25494     1298      4065
 
         .Example
         'spinnaker/spinnaker','argoproj/argo','fluxcd/flux' | Get-GHMetrics | Format-Table
 
-Date                  Owner     Name           issues pullRequests releases stargazers watchers forkCount
-----                  -----     ----           ------ ------------ -------- ---------- -------- ---------
-3/27/2021 10:46:52 AM spinnaker spinnaker        4854         1516       70       7732      363      1074
-3/27/2021 10:46:52 AM argoproj  argo-workflows   2906         2544      122       7983      177      1430
-3/27/2021 10:46:52 AM fluxcd    flux             1563         1835       77       6185      115      1069
-
+Date                 Owner     Name           IsPrivate Issues PullRequests Releases Stargazers Watchers ForkCount
+----                 -----     ----           --------- ------ ------------ -------- ---------- -------- ---------
+3/30/2021 3:52:11 PM spinnaker spinnaker          False   4860         1516       70       7739      363      1076
+3/30/2021 3:52:11 PM argoproj  argo-workflows     False   2919         2551      122       8007      177      1432
+3/30/2021 3:52:11 PM fluxcd    flux               False   1564         1835       77       6189      114      1069
 
     #>
     [CmdletBinding()]
