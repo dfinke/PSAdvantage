@@ -47,6 +47,7 @@ Date                  Owner     Name           issues pullRequests releases star
 query { 
     repository( owner: "$owner" name: "$repo" ) {
         name
+        isPrivate
         issues{totalCount}
         pullRequests{totalCount}
         releases{totalCount}
@@ -69,12 +70,13 @@ query {
             Date         = Get-Date
             Owner        = $owner
             Name         = $repoStats.name
-            issues       = $repoStats.issues.totalCount
-            pullRequests = $repoStats.pullRequests.totalCount
-            releases     = $repoStats.releases.totalCount
-            stargazers   = $repoStats.stargazers.totalCount
-            watchers     = $repoStats.watchers.totalCount
-            forkCount    = $repoStats.forkCount
+            IsPrivate    = $repoStats.isPrivate
+            Issues       = $repoStats.issues.totalCount
+            PullRequests = $repoStats.pullRequests.totalCount
+            Releases     = $repoStats.releases.totalCount
+            Stargazers   = $repoStats.stargazers.totalCount
+            Watchers     = $repoStats.watchers.totalCount
+            ForkCount    = $repoStats.forkCount
         }
     }
 }
