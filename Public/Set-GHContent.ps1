@@ -20,7 +20,8 @@ function Set-GHContent {
         [Parameter(ValueFromPipelineByPropertyName)]
         $FullName,
         $gitHubPath,
-        $AccessToken     
+        $AccessToken,
+        [Switch]$View
     )
 
     Process {
@@ -51,7 +52,10 @@ function Set-GHContent {
     
         $result = Invoke-GitHubAPI -Uri $url -Method Put -Body $payload -AccessToken $AccessToken
         if ($result) {
-            Write-ToConsole +  -text "$FullName pushed to $owner $outPath"
+            Write-ToConsole + -text "$FullName pushed to $owner $outPath"
+            if ($View) {
+                Start-Process ('https://github.com/{0}/{1}' -f $owner, $reponame)
+            }
         }
     }
 }
