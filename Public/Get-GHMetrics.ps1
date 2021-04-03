@@ -22,7 +22,8 @@ Date                 Owner     Name           IsPrivate Issues PullRequests Rele
     #>
     [CmdletBinding()]
     param(
-        [Parameter(ValueFromPipeline)]
+        # [parameter(ValueFromPipeline=$True,ValueFromPipelineByPropertyName=$True)]
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         $slug,
         $owner,
         $repo,
@@ -31,6 +32,10 @@ Date                 Owner     Name           IsPrivate Issues PullRequests Rele
 
     Process {
         if ($slug) {
+            if ($slug.slug) {
+                $slug = $slug.slug
+            }
+            
             $owner, $repo = $slug -split '/'
         }
 
