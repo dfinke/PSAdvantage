@@ -12,24 +12,32 @@ function Get-GHWorkflow {
         $owner,
         [Parameter(Mandatory)]
         $repo,
-        $AccessToken
+        $AccessToken,
+        [Switch]$Raw
     )    
     
     try {
         
         $url = "https://api.github.com/repos/{0}/{1}/actions/workflows" -f $owner, $repo
+        Write-Verbose $url
         $result = Invoke-GitHubAPI -Uri $url -AccessToken $AccessToken
         
         foreach ($item in $result.workflows) {
-            [PSCustomObject][Ordered]@{
-                WorkflowId = $item.Id
-                Name       = $item.name
-                Created    = $item.created_at
-                Updated    = $item.updated_at
-                Path       = $item.path
-                Url        = $item.html_url
-                Owner      = $owner
-                Repo       = $repo
+            if ($Raw) {
+                $item
+            }
+            else {
+                
+                [PSCustomObject][Ordered]@{
+                    WorkflowId = $item.Id
+                    Name       = $item.name
+                    Created    = $item.created_at
+                    Updated    = $item.updated_at
+                    Path       = $item.path
+                    Url        = $item.html_url
+                    Owner      = $owner
+                    Repo       = $repo
+                }
             }
         }
     }
