@@ -49,17 +49,32 @@ Date                 Owner     Name           IsPrivate Issues PullRequests Rele
 
         $query = @"
 query { 
-    repository( owner: "$owner" name: "$repo" ) {
-        name
-        isPrivate
-        issues{totalCount}
-        pullRequests{totalCount}
-        releases{totalCount}
-        stargazers{totalCount}
-        watchers{totalCount}    
-        forkCount
+    repository( owner: "$owner", name: "$repo" ) {
+            name
+            isPrivate
+            issues{totalCount}
+            pullRequests{totalCount}
+            releases{totalCount}
+            stargazers{totalCount}
+            watchers{totalCount}
+            forkCount
+
+            ref(qualifiedName: "master") {
+                target {
+                    ... on Commit {
+                        history(first: 1) {
+                            edges {
+                                node {
+                                    committedDate
+                                }
+                            }
+                            totalCount
+                        }
+                    }
+                }
+            }
+        }
     }
-}
 "@
 
         Write-Verbose $query
@@ -81,6 +96,8 @@ query {
             Stargazers   = $repoStats.stargazers.totalCount
             Watchers     = $repoStats.watchers.totalCount
             ForkCount    = $repoStats.forkCount
+            TotalCommits = $repoStats.ref.target.history.totalCount
+            LastCommit   = $repoStats.ref.target.history.edges.node.committedDate
         }
     }
 }
