@@ -50,31 +50,33 @@ Date                 Owner     Name           IsPrivate Issues PullRequests Rele
         $query = @"
 query { 
     repository( owner: "$owner", name: "$repo" ) {
-            name
-            isPrivate
-            issues{totalCount}
-            pullRequests{totalCount}
-            releases{totalCount}
-            stargazers{totalCount}
-            watchers{totalCount}
-            forkCount
+        name
+        isPrivate
+        issues{totalCount}
+        pullRequests{totalCount}
+        releases{totalCount}
+        stargazers{totalCount}
+        watchers{totalCount}
+        forkCount
 
-            ref(qualifiedName: "master") {
-                target {
-                    ... on Commit {
-                        history(first: 1) {
-                            edges {
-                                node {
-                                    committedDate
-                                }
-                            }
-                            totalCount
-                        }
+        defaultBranchRef {
+            name
+            target {
+                ... on Commit {
+                history(first: 1) {
+                    edges {
+                    node {
+                        committedDate
                     }
+                    }
+                    totalCount
+                }
                 }
             }
-        }
+            }
+        
     }
+}
 "@
 
         Write-Verbose $query
@@ -84,20 +86,22 @@ query {
 
         $r = Invoke-GitHubAPI -Uri ("$(Get-GHBaseRestURI)/graphql") -Body $q -Method Post -AccessToken $AccessToken
         $repoStats = $r.data.repository
-
+        
         [PSCustomObject][Ordered]@{
-            Date         = Get-Date
-            Owner        = $owner
-            Name         = $repoStats.name
-            IsPrivate    = $repoStats.isPrivate
-            Issues       = $repoStats.issues.totalCount
-            PullRequests = $repoStats.pullRequests.totalCount
-            Releases     = $repoStats.releases.totalCount
-            Stargazers   = $repoStats.stargazers.totalCount
-            Watchers     = $repoStats.watchers.totalCount
-            ForkCount    = $repoStats.forkCount
-            TotalCommits = $repoStats.ref.target.history.totalCount
-            LastCommit   = $repoStats.ref.target.history.edges.node.committedDate
+            TimeStamp     = Get-Date
+            Owner         = $owner
+            Name          = $repoStats.name
+            IsPrivate     = $repoStats.isPrivate
+            Issues        = $repoStats.issues.totalCount
+            PullRequests  = $repoStats.pullRequests.totalCount
+            Releases      = $repoStats.releases.totalCount
+            Stargazers    = $repoStats.stargazers.totalCount
+            Watchers      = $repoStats.watchers.totalCount
+            ForkCount     = $repoStats.forkCount
+
+            TotalCommits  = $repoStats.defaultBranchRef.target.history.totalcount
+            LastCommit    = $repoStats.defaultBranchRef.target.history.edges.node.committedDate
+            defaultBranch = $repoStats.defaultBranchRef.Name
         }
     }
 }
