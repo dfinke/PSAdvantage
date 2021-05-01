@@ -1,7 +1,12 @@
 # 5/1/2021
 
-# 4/28/2021
 - Update Get-GHMetrics GraphQL with total commits, default branch, last commit date
+
+# 4/28/2021
+
+- Add GitHub Token to basic-powershell.yml
+- Add `total commits` and `last commit date` to `Get-GHMetrics`
+- Add raw switch to `Get-GHWorkflow`
 
 # 4/03/2021
 
