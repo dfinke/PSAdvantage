@@ -8,40 +8,42 @@ function Get-GHWorkflow {
         Get-GHWorkflow microsoft vscode | format-table
     #>
     param(
-        [Parameter(Mandatory)]
+        [Parameter(ValueFromPipelineByPropertyName)]
         $owner,
-        [Parameter(Mandatory)]
+        [Parameter(ValueFromPipelineByPropertyName)]
         $repo,
         $AccessToken,
         [Switch]$Raw
     )    
     
-    try {
+    Process {
+        try {
         
-        $url = "https://api.github.com/repos/{0}/{1}/actions/workflows" -f $owner, $repo
-        Write-Verbose $url
-        $result = Invoke-GitHubAPI -Uri $url -AccessToken $AccessToken
+            $url = "https://api.github.com/repos/{0}/{1}/actions/workflows" -f $owner, $repo
+            Write-Verbose $url
+            $result = Invoke-GitHubAPI -Uri $url -AccessToken $AccessToken
         
-        foreach ($item in $result.workflows) {
-            if ($Raw) {
-                $item
-            }
-            else {
+            foreach ($item in $result.workflows) {
+                if ($Raw) {
+                    $item
+                }
+                else {
                 
-                [PSCustomObject][Ordered]@{
-                    WorkflowId = $item.Id
-                    Name       = $item.name
-                    Created    = $item.created_at
-                    Updated    = $item.updated_at
-                    Path       = $item.path
-                    Url        = $item.html_url
-                    Owner      = $owner
-                    Repo       = $repo
+                    [PSCustomObject][Ordered]@{
+                        WorkflowId = $item.Id
+                        Name       = $item.name
+                        Created    = $item.created_at
+                        Updated    = $item.updated_at
+                        Path       = $item.path
+                        Url        = $item.html_url
+                        Owner      = $owner
+                        Repo       = $repo
+                    }
                 }
             }
         }
-    }
-    catch {        
-        $errVar.Message | ConvertFrom-Json | Select-Object -ExpandProperty message
+        catch {        
+            $errVar.Message | ConvertFrom-Json | Select-Object -ExpandProperty message
+        }
     }
 }
