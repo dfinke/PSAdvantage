@@ -1,3 +1,7 @@
+# 7/5/2021
+
+- Update Get-GHWorkflow parameters with `[Parameter(ValueFromPipelineByPropertyName)]`
+
 # 5/1/2021
 
 - Update Get-GHMetrics GraphQL with total commits, default branch, last commit date
