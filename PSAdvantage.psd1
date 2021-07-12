@@ -6,7 +6,7 @@
     RootModule         = 'PSAdvantage.psm1'
 
     # Version number of this module.
-    ModuleVersion      = '0.6.0'
+    ModuleVersion      = '0.7.0'
 
     # ID used to uniquely identify this module
     GUID               = '49ae071e-64ab-43f3-8de7-20b0ea6fbab8'
@@ -50,6 +50,7 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'Invoke-GHWorkflow',
         'Invoke-GitHubAPI',
         'New-GHRepo',
+        'New-GHIssue',
         # 'New-GHSecret',
         'Remove-GHRepo',
         'Remove-GHRepoWorkflowFile',
