@@ -34,7 +34,7 @@ function Get-GHWorkflow {
                         $item
                     }
                     else {
-                        [PSCustomObject][Ordered]@{
+                        $obj = [PSCustomObject][Ordered]@{
                             WorkflowId = $item.Id
                             Name       = $item.name
                             Created    = $item.created_at
@@ -44,6 +44,10 @@ function Get-GHWorkflow {
                             Owner      = $owner
                             Repo       = $repo
                         }
+
+                        $obj.psobject.Typenames.Clear()
+                        $obj.psobject.Typenames.Add('PSAdvantage.GitHubWorkflow')
+                        $obj
                     }
                 }
             ) | Where-Object { $_.Name -like $Name } 
