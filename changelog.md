@@ -1,5 +1,13 @@
 # 7/5/2021
 
+- Update Get-GHWorkflow, filter workflows by name
+
+```powershell
+Get-GHWorkflow microsoft vscode deep*
+```
+
+# 7/5/2021
+
 - Update Get-GHWorkflow parameters with `[Parameter(ValueFromPipelineByPropertyName)]`
 
 # 5/1/2021

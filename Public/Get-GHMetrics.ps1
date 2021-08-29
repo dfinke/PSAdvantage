@@ -22,7 +22,6 @@ Date                 Owner     Name           IsPrivate Issues PullRequests Rele
     #>
     [CmdletBinding()]
     param(
-        # [parameter(ValueFromPipeline=$True,ValueFromPipelineByPropertyName=$True)]
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         $slug,
         $owner,
@@ -61,20 +60,19 @@ query {
 
         defaultBranchRef {
             name
-            target {
-                ... on Commit {
-                history(first: 1) {
-                    edges {
-                    node {
-                        committedDate
+                target {
+                    ... on Commit {
+                        history(first: 1) {
+                            edges {
+                                node {
+                                    committedDate
+                                }
+                            }
+                            totalCount
+                        }
                     }
-                    }
-                    totalCount
                 }
-                }
-            }
-            }
-        
+            }        
     }
 }
 "@
