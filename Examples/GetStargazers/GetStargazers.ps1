@@ -1,3 +1,4 @@
 Import-Module "$PSScriptRoot\..\..\PSAdvantage.psd1" -Force
 
-Get-GHStarGazers dfinke/powershell-notebooks | select -First 1 |clip
+# Get-GHStarGazers dfinke/powershell-notebooks
+'dfinke/powershellnotebook', 'dfinke/powershell-notebooks' | Get-GHStarGazers

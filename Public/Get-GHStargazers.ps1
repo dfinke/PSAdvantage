@@ -26,14 +26,15 @@ function Get-GHStarGazers {
   #>
   [CmdletBinding()]
   param(
-    [Parameter(Mandatory)]
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     $slug,
     $AccessToken
   )
 
-  $owner, $repo = $slug.split('/')
+  Process {
+    $owner, $repo = $slug.split('/')
 
-  $query = @"
+    $query = @"
 {
   repository(owner: "$owner", name: "$repo") {
     stargazers(first: 100) {
@@ -73,15 +74,16 @@ function Get-GHStarGazers {
 }
 "@
 
-  $q = ConvertTo-Json @{query = $query }
+    $q = ConvertTo-Json @{query = $query }
 
-  $r = Invoke-GitHubAPI -Uri ("$(Get-GHBaseRestURI)/graphql") -Body $q -Method Post -AccessToken $AccessToken
+    $r = Invoke-GitHubAPI -Uri ("$(Get-GHBaseRestURI)/graphql") -Body $q -Method Post -AccessToken $AccessToken
 
-  if ($r.errors) {
-    Write-Host $r.errors[0].message
-    return
+    if ($r.errors) {
+      Write-Host $r.errors[0].message
+      return
+    }
+
+    $r.data.repository.stargazers.edges.node | Add-Member -PassThru -MemberType NoteProperty -Name repo -Value $slug
+    Write-Verbose $query
   }
-
-  $r.data.repository.stargazers.edges.node
-  Write-Verbose $query
 }
