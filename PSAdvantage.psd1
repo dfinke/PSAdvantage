@@ -37,10 +37,11 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'Get-GHLatestJobSteps',
         'Get-GHLatestRun',
         'Get-GHLog',
+        'Get-GHMetrics',
         'Get-GHRepo',
         'Get-GHRun',
         'Get-GHSecret',
-        'Get-GHMetrics',
+        'Get-GHStarGazers',
         'Get-GHWorkflow',
         'Get-GitHubAuthHeader',
         'Import-PSAdvantageConfig',
@@ -49,9 +50,8 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'Invoke-GHPush',
         'Invoke-GHWorkflow',
         'Invoke-GitHubAPI',
-        'New-GHRepo',
         'New-GHIssue',
-        # 'New-GHSecret',
+        'New-GHRepo',
         'Remove-GHRepo',
         'Remove-GHRepoWorkflowFile',
         'Remove-GHSecret',
@@ -61,6 +61,7 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'Test-GHPath',
         'Test-GHRepo',
         'Test-GHSecret'
+        # 'New-GHSecret',
     )
 
     # Aliases to export from this module
