@@ -1,7 +1,7 @@
 function Get-GHStarGazers {
   <#
     .Synopsis
-    Gets GitHub stargzers on repositories
+    Gets GitHub stargazers on repositories
 
     .Description
     Gets first 100 stargazers on a GitHub repository, **does not** paginate
