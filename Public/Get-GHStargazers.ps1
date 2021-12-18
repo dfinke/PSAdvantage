@@ -27,7 +27,8 @@ function Get-GHStarGazers {
   [CmdletBinding()]
   param(
     [Parameter(Mandatory)]
-    $slug 
+    $slug,
+    $AccessToken
   )
 
   $owner, $repo = $slug.split('/')
