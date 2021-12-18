@@ -13,7 +13,8 @@ function Get-GHJobSteps {
         [Parameter(ValueFromPipelineByPropertyName)]
         [Alias('id')]
         $runId,
-        $AccessToken
+        $AccessToken,
+        [Switch]$Raw
     )
 
     Process {                        
