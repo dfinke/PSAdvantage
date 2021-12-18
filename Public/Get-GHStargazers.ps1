@@ -1,13 +1,38 @@
 function Get-GHStarGazers {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory)]
-        $slug 
-    )
+  <#
+    .Synopsis
+    Gets GitHub stargzers on repositories
 
-    $owner, $repo = $slug.split('/')
+    .Description
+    Gets first 100 stargazers on a GitHub repository, **does not** paginate
 
-    $query = @"
+    .Example
+    Get-GHStarGazers dfinke/powershell-notebooks
+
+    login           : thedavecarroll
+    email           : 
+    name            : Dave Carroll
+    bio             : PowerShell developer and enthusiast with a side of DevOps, infrastructure, and retrocomputing.
+    company         : 
+    repositories    : @{totalCount=11}
+    isHireable      : False
+    avatarUrl       : https://avatars.githubusercontent.com/u/37391437?v=4
+    createdAt       : 3/15/2018 3:07:59 AM
+    updatedAt       : 11/28/2021 1:11:41 AM
+    twitterUsername : thedavecarroll
+    websiteUrl      : https://thedavecarroll.com
+    followers       : @{totalCount=91}
+    following       : @{totalCount=86}
+  #>
+  [CmdletBinding()]
+  param(
+    [Parameter(Mandatory)]
+    $slug 
+  )
+
+  $owner, $repo = $slug.split('/')
+
+  $query = @"
 {
   repository(owner: "$owner", name: "$repo") {
     stargazers(first: 100) {
@@ -47,15 +72,15 @@ function Get-GHStarGazers {
 }
 "@
 
-    $q = ConvertTo-Json @{query = $query }
+  $q = ConvertTo-Json @{query = $query }
 
-    $r = Invoke-GitHubAPI -Uri ("$(Get-GHBaseRestURI)/graphql") -Body $q -Method Post -AccessToken $AccessToken
+  $r = Invoke-GitHubAPI -Uri ("$(Get-GHBaseRestURI)/graphql") -Body $q -Method Post -AccessToken $AccessToken
 
-    if ($r.errors) {
-        Write-Host $r.errors[0].message
-        return
-    }
+  if ($r.errors) {
+    Write-Host $r.errors[0].message
+    return
+  }
 
-    $r.data.repository.stargazers.edges.node
-    Write-Verbose $query -
+  $r.data.repository.stargazers.edges.node
+  Write-Verbose $query
 }
