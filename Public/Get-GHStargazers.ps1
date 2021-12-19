@@ -28,7 +28,8 @@ function Get-GHStarGazers {
   param(
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     $slug,
-    $AccessToken
+    $AccessToken,
+    [Switch]$CountOnly
   )
 
   Process {
@@ -83,7 +84,13 @@ function Get-GHStarGazers {
       return
     }
 
-    $r.data.repository.stargazers.edges.node | Add-Member -PassThru -MemberType NoteProperty -Name repo -Value $slug
     Write-Verbose $query
+
+    if ($CountOnly) {
+      "Stargazers {0}" -f $r.data.repository.stargazers.edges.node.count
+    }
+    else {
+      $r.data.repository.stargazers.edges.node | Add-Member -PassThru -MemberType NoteProperty -Name repo -Value $slug
+    }
   }
 }
