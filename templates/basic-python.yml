@@ -2,7 +2,7 @@
 # Install-Module -Name PSAdvantage
 
 # Template for basic python automation
-name: Custom Python Automation
+name: $name - Python
 
 on:
   workflow_dispatch:

@@ -2,7 +2,7 @@
 # Install-Module -Name PSAdvantage
 
 # Template for basic PowerShell automation
-name: Custom PowerShell Automation - Linux
+name: $name - Linux
 
 on:
   workflow_dispatch:

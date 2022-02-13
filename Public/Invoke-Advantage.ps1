@@ -22,6 +22,7 @@ function Invoke-Advantage {
         [ValidateSet([TemplateNames])]
         $template,
         $command,
+        $name = 'Custom PowerShell Automation',
         $AccessToken,
         $saveLogs
     )

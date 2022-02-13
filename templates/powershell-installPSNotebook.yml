@@ -2,7 +2,7 @@
 # Install-Module -Name PSAdvantage
 
 # Template for basic PowerShell automation
-name: PowerShell Notebook Setup
+name: $name - with PowerShell Notebook Setup
 
 on:
   workflow_dispatch:

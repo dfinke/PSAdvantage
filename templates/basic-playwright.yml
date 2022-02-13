@@ -4,7 +4,7 @@
 # Template for basic PowerShell automation
 name: $name
 
-on:
+on:  
   workflow_dispatch:
 
 jobs:
@@ -17,6 +17,8 @@ jobs:
       - name: Run the scripts
         shell: pwsh
         run: |
+          npm i -D @playwright/test
+          npx playwright install          
 $command
         env:
           GITHUB_TOKEN: `${{secrets.GITHUB_TOKEN}}

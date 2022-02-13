@@ -2,7 +2,7 @@
 # Install-Module -Name PSAdvantage
 
 # Template for basic PowerShell automation
-name: Excel Setup
+name: $name - with ImportExcel Setup
 
 on:
   workflow_dispatch:

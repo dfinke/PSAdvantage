@@ -7,7 +7,8 @@ function Expand-Template {
     param(
         [Parameter(Mandatory)]
         $templateFile,
-        $command
+        $command,
+        $script:name
     )
     
     $templateFile = "$PSScriptRoot\..\templates\$($templateFile).yml"
