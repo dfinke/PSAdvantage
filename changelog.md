@@ -1,3 +1,7 @@
+# v0.9.3
+
+- Added `Find-GHRepoByUser`
+
 # 7/5/2021
 
 - Update Get-GHWorkflow, filter workflows by name
