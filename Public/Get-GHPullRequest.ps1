@@ -23,23 +23,7 @@ function Get-GHPullRequest {
             $result
         }
         else {
-            foreach ($item in $result) {
-                foreach ($i in $item) {
-                    $created = Get-Date $i.created_at
-
-                    $closedDate = $i.closed_at
-                    if ($i.state -eq 'open') { $closedDate = Get-Date }
-
-                    [PSCustomObject][Ordered]@{
-                        Created       = $created.ToShortDateString()
-                        DaysOpen      = ($closedDate - $created).Days
-                        ReviewerCount = $i.requested_reviewers.Count
-                        State         = $i.state
-                        Title         = $i.title
-                        Repo          = $slug
-                    }
-                }
-            }
+            TransformIssuesAndPullRequests $result
         }
     }
 }
