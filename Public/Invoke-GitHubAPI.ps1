@@ -11,11 +11,31 @@ function Invoke-GitHubAPI {
         $Body,
         $OutFile,
         $AccessToken,
+        [Switch]$FollowRelLink,
+        $MaximumFollowRelLink,
         [Switch]$SilentlyContinue
     )
 
     try {
-        Invoke-RestMethod -Uri $uri -Headers (Get-GitHubAuthHeader -AccessToken $AccessToken) -Method $Method -Body $Body -OutFile $OutFile -ErrorVariable errVar
+        # Invoke-RestMethod -Uri $uri -Headers (Get-GitHubAuthHeader -AccessToken $AccessToken) -Method $Method -Body $Body -OutFile $OutFile -ErrorVariable errVar
+        # Invoke-RestMethod -Uri $uri -Headers (Get-GitHubAuthHeader -AccessToken $AccessToken) -Method $Method -Body $Body -OutFile $OutFile -FollowRelLink:$FollowRelLink -MaximumFollowRelLink $MaximumFollowRelLink -ErrorVariable errVar
+        $params = @{
+            Uri     = $uri
+            Headers = (Get-GitHubAuthHeader -AccessToken $AccessToken)
+            Method  = $Method
+            Body    = $Body
+            OutFile = $OutFile
+        }
+        if ($FollowRelLink.IsPresent -and !$MaximumFollowRelLink) {
+            $params.FollowRelLink = $FollowRelLink
+            $params.MaximumFollowRelLink = 1
+        }
+        elseif ($FollowRelLink.IsPresent -and $MaximumFollowRelLink) {
+            $params.FollowRelLink = $FollowRelLink
+            $params.MaximumFollowRelLink = $MaximumFollowRelLink            
+        }
+
+        Invoke-RestMethod @params -ErrorVariable errVar
     }
     catch {
         if ($errVar) {
