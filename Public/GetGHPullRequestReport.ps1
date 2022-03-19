@@ -5,6 +5,7 @@ function Get-GHPullRequestReport {
         [string[]]$slug,
         [ValidateSet("open", "closed", "all")]
         $state = 'all',
+        $XLFilename = "./GitHubStats.xlsx",        
         [int]$NumberOfPages = 1
     )
 
@@ -19,6 +20,6 @@ function Get-GHPullRequestReport {
     }        
 
     End {
-        ExportReport PullRequests $data 
+        ExportReport PullRequests $data -XLFilename $XLFilename
     }
 }

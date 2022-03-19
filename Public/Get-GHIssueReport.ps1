@@ -5,6 +5,7 @@ function Get-GHIssueReport {
         [string[]]$slug,
         [ValidateSet("open", "closed", "all")]
         $state = 'all',
+        $XLFilename = "./GitHubStats.xlsx",        
         [int]$NumberOfPages = 1
     )
 
@@ -19,6 +20,6 @@ function Get-GHIssueReport {
     }        
 
     End {
-        ExportReport Issues $data 
+        ExportReport Issues $data -XLFilename $XLFilename
     }
 }
