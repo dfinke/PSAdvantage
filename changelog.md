@@ -1,6 +1,10 @@
-# v0.9.3
+# v0.9.2
 
-- Added `Find-GHRepoByUser`
+- Added 
+    - `Get-GHIssueReport` - Get 'open|closed|all' issues in a GitHub repository, and save them to Excel, and make a pivot table
+    - `Get-GHPullRequestReport` - Get 'open|closed|all' pull requests in a GitHub repository, and save them to Excel, and make a pivot table
+    - `ExportReport` - Export either issues or pull request details to an Excel file
+    - `Find-GHRepoByUser` - Find the GitHub repositories for a user
 
 # 7/5/2021
 
