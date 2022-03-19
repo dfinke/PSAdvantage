@@ -1,5 +1,16 @@
 #Requires -Modules ImportExcel
 function Get-GHPullRequestReport {
+        <#
+        .SYNOPSIS
+        Get pull requests in a GitHub repository, and save them to Excel, and make a pivot table
+        
+        .EXAMPLE
+        Get-GHIssueReport dfinke/importexcel
+
+        .EXAMPLE
+        Get-GHIssueReport dfinke/importexcel -closed
+    #>
+
     param(
         [Parameter(ValueFromPipeline)]
         [string[]]$slug,

@@ -1,4 +1,9 @@
 function ExportReport {
+    <#
+        .SYNOPSIS
+        Export either issues or pull request details to an Excel file        
+    #>
+
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
