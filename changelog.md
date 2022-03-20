@@ -1,6 +1,8 @@
 # v0.9.3
 - Added 
     - Get-GHRelease - Get releases in a GitHub repository
+    - Get-GHReleaseReport - Get releases in a GitHub repository, and export to Excel
+    - Get-GHAllReports - Gets all metrics from a GitHub repo, Releases, Issues, and Pull Requests. Exports to Excel
 
 # v0.9.2
 

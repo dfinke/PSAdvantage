@@ -16,8 +16,12 @@ function Get-GHAllReports {
     )
 
     Process {
+        if (!$slug) {
+            Write-Warning "Slug not specified and is required"
+            return
+        }
         Get-GHIssueReport -slug $slug -state $state -XLFilename $XLFilename -NumberOfPages $NumberOfPages
-        Get-GHPullRequestReport -slug $slug -state $state -XLFilename $XLFilename -NumberOfPages $NumberOfPages
-        Get-GHRelease -slug $slug -XLFilename $XLFilename -NumberOfPages $NumberOfPages -AsExcelReport
+        Get-GHPullRequestReport -slug $slug -state $state -XLFilename $XLFilename -NumberOfPages $NumberOfPages        
+        Get-GHReleaseReport -slug $slug -XLFilename $XLFilename -NumberOfPages $NumberOfPages
     }
 }
