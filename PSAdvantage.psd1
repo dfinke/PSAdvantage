@@ -45,6 +45,7 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'Get-GHPullRequest',
         'Get-GHPullRequestReport',
         'Get-GHRelease',
+        'Get-GHReleaseReport',
         'Get-GHRepo',
         'Get-GHRun',
         'Get-GHSecret',
