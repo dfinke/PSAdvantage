@@ -1,4 +1,5 @@
 function Get-GHRelease {
+    [CmdletBinding()]
     <#
         .SYNOPSIS
         Get releases in a GitHub repository
@@ -21,6 +22,8 @@ function Get-GHRelease {
         $slug,
         # Number of pages to retrieve        
         $NumberOfPages = 1,
+        $XLFilename,
+        [Switch]$AsExcelReport,
         [Switch]$Raw
     )
     
@@ -37,21 +40,73 @@ function Get-GHRelease {
             $result
         }
         else {
-            foreach ($item in $result) {
+            $transformed = foreach ($item in $result) {
                 foreach ($i in $item) {
                     $created = Get-Date $i.created_at        
         
                     [PSCustomObject][Ordered]@{
-                        DateCreated = $created.ToShortDateString()
+                        DateCreated = $created
                         Tag         = $i.tag_name
                         Draft       = $i.draft
                         PreRelease  = $i.prerelease
                         Repo        = $slug
-                        Tarball     = $i.tarball_url
                         Zipball     = $i.zipball_url
+                        Tarball     = $i.tarball_url
                     }
                 }
             }            
+        }
+
+        if ($AsExcelReport) {
+            $Type = 'Releases'
+            
+            if (!$XLFilename) {
+                $XLFilename = "./GitHubStats.xlsx"  
+            }
+            
+            if (!$WorksheetName) {
+                $ts = (Get-Date).ToString("yyyyMMddHHmmss")
+                $worksheetName = "$($Type)-$($ts)"
+            }
+
+            $p = @{
+                Path          = $xlfilename
+                AutoSize      = $true
+                AutoFilter    = $true
+                AutoNameRange = $true
+                # TableName     = "$($Type)-Table" + ((New-Guid).guid.split('-')[0])
+                WorksheetName = $worksheetName
+                MoveToStart   = $true
+                StartColumn   = 8
+                PassThru      = $true
+            }
+               
+            $excel = $transformed | Export-Excel @p
+
+            Set-ExcelRange -Worksheet $excel.$worksheetName -Range DateCreated -NumberFormat 'Short Date'
+            Set-ExcelRange -Worksheet $excel.$worksheetName -Range Repo -Width 30
+        
+            $pivotTableParams = @{
+                PivotTableName  = $worksheetName
+                Address         = $excel.$worksheetName.cells["A2"]
+                SourceWorkSheet = $excel.$worksheetName
+                PivotRows       = @("Repo", "DateCreated")
+                #PivotColumns    = @("State")
+                PivotData       = @{'tag' = 'count' }
+                PivotTableStyle = 'Light21'
+                GroupDateRow    = "DateCreated"
+                GroupDatePart   = @("Year", "Quarter", "Month")
+            }
+        
+            $pt = Add-PivotTable @pivotTableParams -PassThru 
+            $pt.RowHeaderCaption = "$($Type) by Quarter"
+        
+            Close-ExcelPackage $excel
+
+            Write-Information "Data saved to: $(Resolve-Path $XLFilename) - $($WorksheetName) " -InformationAction Continue
+        }
+        else {
+            $transformed
         }
     }
 }
