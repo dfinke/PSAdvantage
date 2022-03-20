@@ -30,6 +30,7 @@ GitHub Actions at your Fingertips! ✨ - via PowerShell
         'ConvertTo-Base64String',
         'Expand-Template',
         'Find-GHRepoByUser',
+        'Get-GHAllReports',
         'Get-GHBaseRestURI',
         'Get-GHFileSHA',
         'Get-GHIssue',
