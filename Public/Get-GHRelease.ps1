@@ -8,11 +8,11 @@ function Get-GHRelease {
         Get-GHRelease dfinke/importexcel
         
         .EXAMPLE
-        # Get open releases, and go back 3 pages worth of releases
+        # Get releases, and go back 3 pages worth of releases
         Get-GHRelease dfinke/importexcel -NumberOfPages 3
 
         .EXAMPLE
-        # Get open releases, return all the data from GitHub
+        # Get releases, return all the data from GitHub
         Get-GHRelease dfinke/importexcel -Raw
     #>
 

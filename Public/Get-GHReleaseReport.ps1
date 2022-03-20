@@ -8,7 +8,7 @@ function Get-GHReleaseReport {
         Get-GHReleaseReport dfinke/importexcel
         
         .EXAMPLE
-        # Get open releases, and go back 3 pages worth of releases
+        # Get releases, and go back 3 pages worth of releases
         Get-GHReleaseReport dfinke/importexcel -NumberOfPages 3
     #>
 
