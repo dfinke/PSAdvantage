@@ -41,7 +41,7 @@ function Get-GHIssue {
             return
         }
         
-        Write-Progress -Activity "Getting" -Status "$($state) pull requests for repo $($slug)"
+        Write-Progress -Activity "Getting" -Status "$($state) issues for repo $($slug)"
         $result = (Invoke-GitHubAPI "https://api.github.com/repos/$($slug)/issues?state=$($state)" -FollowRelLink -MaximumFollowRelLink $NumberOfPages)
         # if (!$IncludePullRequests) {
         #     $result = $result | where-object { $null -eq $_.pull_request }    

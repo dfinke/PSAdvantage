@@ -33,7 +33,7 @@ function Get-GHRelease {
             return
         }
         
-        Write-Progress -Activity "Getting" -Status "$($state) pull requests for repo $($slug)"
+        Write-Progress -Activity "Getting" -Status "release info for repo $($slug)"
         $result = (Invoke-GitHubAPI "https://api.github.com/repos/$($slug)/releases" -FollowRelLink -MaximumFollowRelLink $NumberOfPages)
 
         if ($Raw) {
@@ -49,7 +49,7 @@ function Get-GHRelease {
                         Tag         = $i.tag_name
                         Draft       = $i.draft
                         PreRelease  = $i.prerelease
-                        Repo        = $slug
+                        Repo        = $slug[0]
                         Zipball     = $i.zipball_url
                         Tarball     = $i.tarball_url
                     }
@@ -77,7 +77,7 @@ function Get-GHRelease {
                 # TableName     = "$($Type)-Table" + ((New-Guid).guid.split('-')[0])
                 WorksheetName = $worksheetName
                 MoveToStart   = $true
-                StartColumn   = 8
+                StartColumn   = 6
                 PassThru      = $true
             }
                
