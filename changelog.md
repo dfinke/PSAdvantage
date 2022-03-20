@@ -1,3 +1,7 @@
+# v0.9.3
+- Added 
+    - Get-GHRelease - Get releases in a GitHub repository
+
 # v0.9.2
 
 - Added 
