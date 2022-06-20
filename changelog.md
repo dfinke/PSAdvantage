@@ -1,5 +1,6 @@
-# v0.9.3
+# v0.9.4
 - Added 
+    - Get-GHAssest - This returns a list of releases, the `download` switch lets you download the zip file of it
     - Get-GHRelease - Get releases in a GitHub repository
     - Get-GHReleaseReport - Get releases in a GitHub repository, and export to Excel
     - Get-GHAllReports - Gets all metrics from a GitHub repo, Releases, Issues, and Pull Requests. Exports to Excel
